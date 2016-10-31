@@ -16,6 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
@@ -27,3 +28,4 @@ using System.Runtime.InteropServices;
 [assembly: Guid("e8f3a40f-89d9-4acb-b091-bec54e73a869")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: CLSCompliant(true)]
