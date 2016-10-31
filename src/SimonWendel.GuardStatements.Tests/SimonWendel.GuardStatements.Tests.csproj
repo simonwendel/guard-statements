@@ -41,10 +41,17 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GuardTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimonWendel.GuardStatements\SimonWendel.GuardStatements.csproj">
+      <Project>{e8f3a40f-89d9-4acb-b091-bec54e73a869}</Project>
+      <Name>SimonWendel.GuardStatements</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
