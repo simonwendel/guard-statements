@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimonWendel.GuardStatements", "SimonWendel.GuardStatements\SimonWendel.GuardStatements.csproj", "{E8F3A40F-89D9-4ACB-B091-BEC54E73A869}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimonWendel.GuardStatements.Tests", "SimonWendel.GuardStatements.Tests\SimonWendel.GuardStatements.Tests.csproj", "{9BCF319C-1DF8-40B2-8347-7C1D5A09975C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E8F3A40F-89D9-4ACB-B091-BEC54E73A869}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8F3A40F-89D9-4ACB-B091-BEC54E73A869}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8F3A40F-89D9-4ACB-B091-BEC54E73A869}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8F3A40F-89D9-4ACB-B091-BEC54E73A869}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BCF319C-1DF8-40B2-8347-7C1D5A09975C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BCF319C-1DF8-40B2-8347-7C1D5A09975C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BCF319C-1DF8-40B2-8347-7C1D5A09975C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BCF319C-1DF8-40B2-8347-7C1D5A09975C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
