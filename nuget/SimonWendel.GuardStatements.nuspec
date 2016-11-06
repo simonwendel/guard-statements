@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>SimonWendel.GuardStatements</id>
-    <version>1.0</version>
+    <version>1.1</version>
     <title>Guard Statements</title>
     <authors>Simon Wendel</authors>
     <owners>Simon Wendel</owners>
@@ -10,7 +10,7 @@
     <projectUrl>https://github.com/simonwendel/guard-statements</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Guarding invariants in .NET, fx. when enforcing the boundary of a domain model.</description>
-    <releaseNotes>First release</releaseNotes>
+    <releaseNotes>Adds Guard.EnsureNonempty for Nullable&lt;System.Guid&gt; values</releaseNotes>
     <copyright>Copyright 2016</copyright>
     <tags></tags>
   </metadata>
