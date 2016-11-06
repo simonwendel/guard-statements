@@ -83,5 +83,37 @@ namespace SimonWendel.GuardStatements
                 throw new ArgumentException(message: null, paramName: parameterName);
             }
         }
+
+        /// <summary>
+        /// Will check a *nullable* <see cref="System.Guid"/> for <c>null</c> or <see cref="Guid.Empty"/> and responding by throwing an
+        /// adequate exception.
+        /// </summary>
+        /// <param name="parameter">Parameter to check for <c>null</c> or <see cref="Guid.Empty"/>.</param>
+        /// <exception cref="ArgumentNullException">When <paramref name="parameter"/> is <c>null</c>.</exception>
+        /// <exception cref="ArgumentException">When <paramref name="parameter"/> is <see cref="Guid.Empty"/>.</exception>
+        [DebuggerHidden]
+        public static void EnsureNonempty([ValidatedNotNull] Guid? parameter)
+        {
+            EnsureNonempty(parameter, parameterName: null);
+        }
+
+        /// <summary>
+        /// Will check a *nullable* <see cref="System.Guid"/> for <c>null</c> or <see cref="Guid.Empty"/> and responding by throwing an
+        /// adequate exception.
+        /// </summary>
+        /// <param name="parameter">Parameter to check for <c>null</c> or <see cref="Guid.Empty"/>.</param>
+        /// <param name="parameterName">Name of the parameter to include in an exception, if thrown.</param>
+        /// <exception cref="ArgumentNullException">When <paramref name="parameter"/> is <c>null</c>.</exception>
+        /// <exception cref="ArgumentException">When <paramref name="parameter"/> is <see cref="Guid.Empty"/>.</exception>
+        [DebuggerHidden]
+        public static void EnsureNonempty([ValidatedNotNull] Guid? parameter, string parameterName)
+        {
+            EnsureNotNull(parameter, parameterName);
+
+            if (parameter.Equals(Guid.Empty))
+            {
+                throw new ArgumentException(message: null, paramName: parameterName);
+            }
+        }
     }
 }

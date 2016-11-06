@@ -18,6 +18,7 @@
 
 namespace SimonWendel.GuardStatements.Tests
 {
+    using System;
     using NUnit.Framework;
 
     [TestFixture]
@@ -85,6 +86,34 @@ namespace SimonWendel.GuardStatements.Tests
             string nonEmptyString = "not empty";
 
             Guard.EnsureNonempty(nonEmptyString, nameof(nonEmptyString));
+        }
+
+        [Test]
+        public void EnsureNonempty_GivenNullGuid_ThrowsException()
+        {
+            Guid? nullGuid = null;
+            TestDelegate guardStatement =
+                () => Guard.EnsureNonempty(nullGuid, nameof(nullGuid));
+
+            Assert.That(guardStatement, Throws.ArgumentNullException);
+        }
+
+        [Test]
+        public void EnsureNonempty_GivenEmptyGuid_ThrowsException()
+        {
+            Guid emptyGuid = Guid.Empty;
+            TestDelegate guardStatement =
+                () => Guard.EnsureNonempty(emptyGuid, nameof(emptyGuid));
+
+            Assert.That(guardStatement, Throws.ArgumentException);
+        }
+
+        [Test]
+        public void EnsureNonempty_GivenNonemptyGuid_DoesNothing()
+        {
+            Guid nonEmptyGuid = Guid.NewGuid();
+
+            Guard.EnsureNonempty(nonEmptyGuid, nameof(nonEmptyGuid));
         }
     }
 }
