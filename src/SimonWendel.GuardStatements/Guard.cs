@@ -117,6 +117,32 @@ namespace SimonWendel.GuardStatements
         }
 
         /// <summary>
+        /// Will check a predicate return value to make sure it is <c>true</c>, throwing an exception if not.
+        /// </summary>
+        /// <param name="predicate">Predicate to invoke and examine return value.</param>
+        /// <exception cref="ArgumentNullException">When <paramref name="predicate"/> is <c>null</c>.</exception>
+        /// <exception cref="ArgumentException">When <paramref name="predicate"/> returns <c>false</c>.</exception>
+        [DebuggerHidden]
+        public static void EnsureThat([ValidatedNotNull] Func<bool> predicate)
+        {
+            EnsureThat(predicate, parameterName: null);
+        }
+
+        /// <summary>
+        /// Will check a predicate return value to make sure it is <c>true</c>, throwing an exception if not.
+        /// </summary>
+        /// <param name="predicate">Predicate to invoke and examine return value.</param>
+        /// <param name="parameterName">Name of the parameter to include in an exception, if thrown.</param>
+        /// <exception cref="ArgumentNullException">When <paramref name="predicate"/> is <c>null</c>.</exception>
+        /// <exception cref="ArgumentException">When <paramref name="predicate"/> returns <c>false</c>.</exception>
+        [DebuggerHidden]
+        public static void EnsureThat([ValidatedNotNull] Func<bool> predicate, string parameterName)
+        {
+            EnsureNotNull(predicate, nameof(predicate));
+            EnsureThat(predicate(), parameterName);
+        }
+
+        /// <summary>
         /// Will check a condition to make sure it is <c>true</c>, throwing an exception if not.
         /// </summary>
         /// <param name="condition">Condition value to check.</param>

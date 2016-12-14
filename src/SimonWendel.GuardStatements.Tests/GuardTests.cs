@@ -117,6 +117,30 @@ namespace SimonWendel.GuardStatements.Tests
         }
 
         [Test]
+        public void EnsureThat_GivenNullPredicate_ThrowsException()
+        {
+            TestDelegate guardStatement =
+                () => Guard.EnsureThat(null);
+
+            Assert.That(guardStatement, Throws.ArgumentNullException);
+        }
+
+        [Test]
+        public void EnsureThat_GivenFalsePredicate_ThrowsException()
+        {
+            TestDelegate guardStatement =
+                () => Guard.EnsureThat(() => false);
+
+            Assert.That(guardStatement, Throws.ArgumentException);
+        }
+
+        [Test]
+        public void EnsureThat_GivenTruePredicate_DoesNothing()
+        {
+            Guard.EnsureThat(() => true);
+        }
+
+        [Test]
         public void EnsureThat_GivenFalse_ThrowsException()
         {
             TestDelegate guardStatement =
