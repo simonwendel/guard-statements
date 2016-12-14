@@ -115,5 +115,20 @@ namespace SimonWendel.GuardStatements.Tests
 
             Guard.EnsureNonempty(nonEmptyGuid, nameof(nonEmptyGuid));
         }
+
+        [Test]
+        public void EnsureThat_GivenFalse_ThrowsException()
+        {
+            TestDelegate guardStatement =
+                () => Guard.EnsureThat(false);
+
+            Assert.That(guardStatement, Throws.ArgumentException);
+        }
+
+        [Test]
+        public void EnsureThat_GivenTrue_DoesNothing()
+        {
+            Guard.EnsureThat(true);
+        }
     }
 }

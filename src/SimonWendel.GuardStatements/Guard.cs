@@ -115,5 +115,31 @@ namespace SimonWendel.GuardStatements
                 throw new ArgumentException(message: null, paramName: parameterName);
             }
         }
+
+        /// <summary>
+        /// Will check a condition to make sure it is <c>true</c>, throwing an exception if not.
+        /// </summary>
+        /// <param name="condition">Condition value to check.</param>
+        /// <exception cref="ArgumentException">When <paramref name="condition"/> is <c>false</c>.</exception>
+        [DebuggerHidden]
+        public static void EnsureThat(bool condition)
+        {
+            EnsureThat(condition, parameterName: null);
+        }
+
+        /// <summary>
+        /// Will check a condition to make sure it is <c>true</c>, throwing an exception if not.
+        /// </summary>
+        /// <param name="condition">Condition value to check.</param>
+        /// <param name="parameterName">Name of the parameter to include in an exception, if thrown.</param>
+        /// <exception cref="ArgumentException">When <paramref name="condition"/> is <c>false</c>.</exception>
+        [DebuggerHidden]
+        public static void EnsureThat(bool condition, string parameterName)
+        {
+            if (condition == false)
+            {
+                throw new ArgumentException(message: null, paramName: parameterName);
+            }
+        }
     }
 }
