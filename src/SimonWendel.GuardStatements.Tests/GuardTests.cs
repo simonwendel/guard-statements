@@ -19,137 +19,107 @@
 namespace SimonWendel.GuardStatements.Tests
 {
     using System;
-    using NUnit.Framework;
+    using FluentAssertions;
+    using Xunit;
 
-    [TestFixture]
-    internal class GuardTests
+    public class GuardTests
     {
-        [Test]
+        [Fact]
         public void EnsureNotNull_GivenNonNullObject_DoesNothing()
         {
             var nonNullObject = new object();
-
             Guard.EnsureNotNull(nonNullObject);
         }
 
-        [Test]
+        [Fact]
         public void EnsureNotNull_GivenNonNullObjectAndParameterName_DoesNothing()
         {
             var nonNullObject = new object();
-
             Guard.EnsureNotNull(nonNullObject, nameof(nonNullObject));
         }
 
-        [Test]
+        [Fact]
         public void EnsureNotNull_GivenNullObject_ThrowsExeption()
         {
-            object nullObject = null;
-            TestDelegate guardStatement =
-                () => Guard.EnsureNotNull(nullObject);
-
-            Assert.That(guardStatement, Throws.ArgumentNullException);
+            Action guarding = () => Guard.EnsureNotNull(null);
+            guarding.Should().ThrowExactly<ArgumentNullException>();
         }
 
-        [Test]
+        [Fact]
         public void EnsureNotNull_GivenNullObjectAndParameterName_ThrowsExeption()
         {
-            object nullObject = null;
-            TestDelegate guardStatement =
-                () => Guard.EnsureNotNull(nullObject, nameof(nullObject));
-
-            Assert.That(guardStatement, Throws.ArgumentNullException);
+            Action guarding = () => Guard.EnsureNotNull(null, "nullObject");
+            guarding.Should().ThrowExactly<ArgumentNullException>();
         }
 
-        [Test]
+        [Fact]
         public void EnsureNonempty_GivenNullString_ThrowsException()
         {
-            string nullString = null;
-            TestDelegate guardStatement =
-                () => Guard.EnsureNonempty(nullString, nameof(nullString));
-
-            Assert.That(guardStatement, Throws.ArgumentNullException);
+            Action guarding = () => Guard.EnsureNonempty((string)null, "nullString");
+            guarding.Should().ThrowExactly<ArgumentNullException>();
         }
 
-        [Test]
+        [Fact]
         public void EnsureNonempty_GivenEmptyString_ThrowsException()
         {
-            string emptyString = string.Empty;
-            TestDelegate guardStatement =
-                () => Guard.EnsureNonempty(emptyString, nameof(emptyString));
-
-            Assert.That(guardStatement, Throws.ArgumentException);
+            Action guarding = () => Guard.EnsureNonempty(string.Empty, "emptyString");
+            guarding.Should().ThrowExactly<ArgumentException>();
         }
 
-        [Test]
+        [Fact]
         public void EnsureNonempty_GivenNonemptyString_DoesNothing()
         {
-            string nonEmptyString = "not empty";
-
-            Guard.EnsureNonempty(nonEmptyString, nameof(nonEmptyString));
+            Guard.EnsureNonempty("not empty", "nonEmptyString");
         }
 
-        [Test]
+        [Fact]
         public void EnsureNonempty_GivenNullGuid_ThrowsException()
         {
-            Guid? nullGuid = null;
-            TestDelegate guardStatement =
-                () => Guard.EnsureNonempty(nullGuid, nameof(nullGuid));
-
-            Assert.That(guardStatement, Throws.ArgumentNullException);
+            Action guarding = () => Guard.EnsureNonempty((Guid?)null, "nullGuid");
+            guarding.Should().ThrowExactly<ArgumentNullException>();
         }
 
-        [Test]
+        [Fact]
         public void EnsureNonempty_GivenEmptyGuid_ThrowsException()
         {
-            Guid emptyGuid = Guid.Empty;
-            TestDelegate guardStatement =
-                () => Guard.EnsureNonempty(emptyGuid, nameof(emptyGuid));
-
-            Assert.That(guardStatement, Throws.ArgumentException);
+            Action guarding = () => Guard.EnsureNonempty(Guid.Empty, "emptyGuid");
+            guarding.Should().ThrowExactly<ArgumentException>();
         }
 
-        [Test]
+        [Fact]
         public void EnsureNonempty_GivenNonemptyGuid_DoesNothing()
         {
-            Guid nonEmptyGuid = Guid.NewGuid();
-
-            Guard.EnsureNonempty(nonEmptyGuid, nameof(nonEmptyGuid));
+            Guard.EnsureNonempty(Guid.NewGuid(), "nonEmptyGuid");
         }
 
-        [Test]
+        [Fact]
         public void EnsureThat_GivenNullPredicate_ThrowsException()
         {
-            TestDelegate guardStatement =
-                () => Guard.EnsureThat(null);
-
-            Assert.That(guardStatement, Throws.ArgumentNullException);
+            Action guarding = () => Guard.EnsureThat(null);
+            guarding.Should().ThrowExactly<ArgumentNullException>();
         }
 
-        [Test]
+        [Fact]
         public void EnsureThat_GivenFalsePredicate_ThrowsException()
         {
-            TestDelegate guardStatement =
-                () => Guard.EnsureThat(() => false);
-
-            Assert.That(guardStatement, Throws.ArgumentException);
+            Action guarding = () => Guard.EnsureThat(() => false);
+            guarding.Should().ThrowExactly<ArgumentException>();
         }
 
-        [Test]
+        [Fact]
         public void EnsureThat_GivenTruePredicate_DoesNothing()
         {
             Guard.EnsureThat(() => true);
         }
 
-        [Test]
+        [Fact]
         public void EnsureThat_GivenFalse_ThrowsException()
         {
-            TestDelegate guardStatement =
-                () => Guard.EnsureThat(false);
-
-            Assert.That(guardStatement, Throws.ArgumentException);
+            Action guarding = () => Guard.EnsureThat(false);
+            guarding.Should().ThrowExactly<ArgumentException>();
         }
 
-        [Test]
+        [Fact]
         public void EnsureThat_GivenTrue_DoesNothing()
         {
             Guard.EnsureThat(true);
