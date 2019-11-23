@@ -1,19 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net45;net47;netstandard1.0;netstandard2.0;netstandard2.1</TargetFrameworks>
     <RootNamespace>SimonWendel.GuardStatements</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <Version>2.0</Version>
+    <Version>2.2</Version>
     <Authors>Simon Wendel</Authors>
     <Company>Simon Wendel</Company>
     <Product>Guard Statements</Product>
     <Copyright>Copyright (C) 2016-2019  Simon Wendel</Copyright>
     <PackageProjectUrl>https://github.com/simonwendel/guard-statements</PackageProjectUrl>
     <Description>Guarding invariants in .NET, fx. when enforcing the boundary of a domain model.</Description>
-    <PackageReleaseNotes>* Packages DLL:s for .NET Standard 2.0</PackageReleaseNotes>
+    <PackageReleaseNotes>* Multi-targets DLL:s for .NET Framework 4.5, 4.7, as well as .NET Standard 1.0, 2.0 and 2.1</PackageReleaseNotes>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <RepositoryUrl />
   </PropertyGroup>
 
   <ItemGroup>
