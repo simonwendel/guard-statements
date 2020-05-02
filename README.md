@@ -25,6 +25,6 @@ Currently the ```master``` branch is taking GuardStatements from version 2.2 to 
 
 ## Builds
 
-[![Master Branch Build Status](https://dev.azure.com/simonwendel-public/builds/_apis/build/status/simonwendel.guard-statements?branchName=master)
+[![Master Branch Build Status](https://dev.azure.com/simonwendel-public/builds/_apis/build/status/simonwendel.guard-statements?branchName=master)](https://dev.azure.com/simonwendel-public/builds/_build/latest?definitionId=7&branchName=master)
 
 Built by [Azure Pipelines](https://dev.azure.com/simonwendel-public/builds/_build?definitionId=7&_a=summary).
