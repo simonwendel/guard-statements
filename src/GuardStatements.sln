@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimonWendel.GuardStatements", "SimonWendel.GuardStatements\SimonWendel.GuardStatements.csproj", "{E8F3A40F-89D9-4ACB-B091-BEC54E73A869}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuardStatements", "GuardStatements\GuardStatements.csproj", "{E8F3A40F-89D9-4ACB-B091-BEC54E73A869}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimonWendel.GuardStatements.Tests", "SimonWendel.GuardStatements.Tests\SimonWendel.GuardStatements.Tests.csproj", "{64746144-A4FC-470F-BF4B-E57A2BA60072}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuardStatements.Tests", "GuardStatements.Tests\GuardStatements.Tests.csproj", "{64746144-A4FC-470F-BF4B-E57A2BA60072}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
