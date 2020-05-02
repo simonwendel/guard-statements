@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace SimonWendel.GuardStatements.Tests
+namespace GuardStatements.Tests
 {
     using System;
     using FluentAssertions;
