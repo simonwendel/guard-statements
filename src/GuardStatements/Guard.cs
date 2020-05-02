@@ -32,9 +32,9 @@ namespace GuardStatements
         /// <param name="parameter">The object to check for null condition.</param>
         /// <exception cref="ArgumentNullException">When <paramref name="parameter"/> is <c>null</c>.</exception>
         [DebuggerHidden]
-        public static void EnsureNotNull([ValidatedNotNull] object parameter)
+        public static void AgainstNull([ValidatedNotNull] object parameter)
         {
-            EnsureNotNull(parameter, parameterName: null);
+            AgainstNull(parameter, parameterName: null);
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace GuardStatements
         /// <param name="parameterName">Name of the parameter to include in an exception, if thrown.</param>
         /// <exception cref="ArgumentNullException">When <paramref name="parameter"/> is <c>null</c>.</exception>
         [DebuggerHidden]
-        public static void EnsureNotNull([ValidatedNotNull] object parameter, string parameterName)
+        public static void AgainstNull([ValidatedNotNull] object parameter, string parameterName)
         {
             if (parameter == null)
             {
@@ -60,9 +60,9 @@ namespace GuardStatements
         /// <exception cref="ArgumentNullException">When <paramref name="parameter"/> is <c>null</c>.</exception>
         /// <exception cref="ArgumentException">When <paramref name="parameter"/> is <c>string.Empty</c>.</exception>
         [DebuggerHidden]
-        public static void EnsureNonempty([ValidatedNotNull] string parameter)
+        public static void AgainstEmpty([ValidatedNotNull] string parameter)
         {
-            EnsureNonempty(parameter, parameterName: null);
+            AgainstEmpty(parameter, parameterName: null);
         }
 
         /// <summary>
@@ -74,9 +74,9 @@ namespace GuardStatements
         /// <exception cref="ArgumentNullException">When <paramref name="parameter"/> is <c>null</c>.</exception>
         /// <exception cref="ArgumentException">When <paramref name="parameter"/> is <c>string.Empty</c>.</exception>
         [DebuggerHidden]
-        public static void EnsureNonempty([ValidatedNotNull] string parameter, string parameterName)
+        public static void AgainstEmpty([ValidatedNotNull] string parameter, string parameterName)
         {
-            EnsureNotNull(parameter, parameterName);
+            AgainstNull(parameter, parameterName);
 
             if (string.IsNullOrEmpty(parameter))
             {
@@ -92,9 +92,9 @@ namespace GuardStatements
         /// <exception cref="ArgumentNullException">When <paramref name="parameter"/> is <c>null</c>.</exception>
         /// <exception cref="ArgumentException">When <paramref name="parameter"/> is <see cref="Guid.Empty"/>.</exception>
         [DebuggerHidden]
-        public static void EnsureNonempty([ValidatedNotNull] Guid? parameter)
+        public static void AgainstEmpty([ValidatedNotNull] Guid? parameter)
         {
-            EnsureNonempty(parameter, parameterName: null);
+            AgainstEmpty(parameter, parameterName: null);
         }
 
         /// <summary>
@@ -106,9 +106,9 @@ namespace GuardStatements
         /// <exception cref="ArgumentNullException">When <paramref name="parameter"/> is <c>null</c>.</exception>
         /// <exception cref="ArgumentException">When <paramref name="parameter"/> is <see cref="Guid.Empty"/>.</exception>
         [DebuggerHidden]
-        public static void EnsureNonempty([ValidatedNotNull] Guid? parameter, string parameterName)
+        public static void AgainstEmpty([ValidatedNotNull] Guid? parameter, string parameterName)
         {
-            EnsureNotNull(parameter, parameterName);
+            AgainstNull(parameter, parameterName);
 
             if (parameter.Equals(Guid.Empty))
             {
@@ -117,52 +117,52 @@ namespace GuardStatements
         }
 
         /// <summary>
-        /// Will check a predicate return value to make sure it is <c>true</c>, throwing an exception if not.
+        /// Will check a predicate return value to make sure it is <c>false</c>, throwing an exception if not.
         /// </summary>
         /// <param name="predicate">Predicate to invoke and examine return value.</param>
         /// <exception cref="ArgumentNullException">When <paramref name="predicate"/> is <c>null</c>.</exception>
-        /// <exception cref="ArgumentException">When <paramref name="predicate"/> returns <c>false</c>.</exception>
+        /// <exception cref="ArgumentException">When <paramref name="predicate"/> returns <c>true</c>.</exception>
         [DebuggerHidden]
-        public static void EnsureThat([ValidatedNotNull] Func<bool> predicate)
+        public static void Against([ValidatedNotNull] Func<bool> predicate)
         {
-            EnsureThat(predicate, parameterName: null);
+            Against(predicate, parameterName: null);
         }
 
         /// <summary>
-        /// Will check a predicate return value to make sure it is <c>true</c>, throwing an exception if not.
+        /// Will check a predicate return value to make sure it is <c>false</c>, throwing an exception if not.
         /// </summary>
         /// <param name="predicate">Predicate to invoke and examine return value.</param>
         /// <param name="parameterName">Name of the parameter to include in an exception, if thrown.</param>
         /// <exception cref="ArgumentNullException">When <paramref name="predicate"/> is <c>null</c>.</exception>
-        /// <exception cref="ArgumentException">When <paramref name="predicate"/> returns <c>false</c>.</exception>
+        /// <exception cref="ArgumentException">When <paramref name="predicate"/> returns <c>true</c>.</exception>
         [DebuggerHidden]
-        public static void EnsureThat([ValidatedNotNull] Func<bool> predicate, string parameterName)
+        public static void Against([ValidatedNotNull] Func<bool> predicate, string parameterName)
         {
-            EnsureNotNull(predicate, nameof(predicate));
-            EnsureThat(predicate(), parameterName);
+            AgainstNull(predicate, nameof(predicate));
+            Against(predicate(), parameterName);
         }
 
         /// <summary>
-        /// Will check a condition to make sure it is <c>true</c>, throwing an exception if not.
+        /// Will check a condition to make sure it is <c>false</c>, throwing an exception if not.
         /// </summary>
         /// <param name="condition">Condition value to check.</param>
-        /// <exception cref="ArgumentException">When <paramref name="condition"/> is <c>false</c>.</exception>
+        /// <exception cref="ArgumentException">When <paramref name="condition"/> is <c>true</c>.</exception>
         [DebuggerHidden]
-        public static void EnsureThat(bool condition)
+        public static void Against(bool condition)
         {
-            EnsureThat(condition, parameterName: null);
+            Against(condition, parameterName: null);
         }
 
         /// <summary>
-        /// Will check a condition to make sure it is <c>true</c>, throwing an exception if not.
+        /// Will check a condition to make sure it is <c>false</c>, throwing an exception if not.
         /// </summary>
         /// <param name="condition">Condition value to check.</param>
         /// <param name="parameterName">Name of the parameter to include in an exception, if thrown.</param>
-        /// <exception cref="ArgumentException">When <paramref name="condition"/> is <c>false</c>.</exception>
+        /// <exception cref="ArgumentException">When <paramref name="condition"/> is <c>true</c>.</exception>
         [DebuggerHidden]
-        public static void EnsureThat(bool condition, string parameterName)
+        public static void Against(bool condition, string parameterName)
         {
-            if (condition == false)
+            if (condition)
             {
                 throw new ArgumentException(message: null, paramName: parameterName);
             }

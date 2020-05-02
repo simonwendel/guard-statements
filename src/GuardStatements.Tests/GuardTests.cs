@@ -25,104 +25,104 @@ namespace GuardStatements.Tests
     public class GuardTests
     {
         [Fact]
-        public void EnsureNotNull_GivenNonNullObject_DoesNothing()
+        public void AgainstNull_GivenNonNullObject_DoesNothing()
         {
             var nonNullObject = new object();
-            Guard.EnsureNotNull(nonNullObject);
+            Guard.AgainstNull(nonNullObject);
         }
 
         [Fact]
-        public void EnsureNotNull_GivenNonNullObjectAndParameterName_DoesNothing()
+        public void AgainstNull_GivenNonNullObjectAndParameterName_DoesNothing()
         {
             var nonNullObject = new object();
-            Guard.EnsureNotNull(nonNullObject, nameof(nonNullObject));
+            Guard.AgainstNull(nonNullObject, nameof(nonNullObject));
         }
 
         [Fact]
-        public void EnsureNotNull_GivenNullObject_ThrowsExeption()
+        public void AgainstNull_GivenNullObject_ThrowsExeption()
         {
-            Action guarding = () => Guard.EnsureNotNull(null);
+            Action guarding = () => Guard.AgainstNull(null);
             guarding.Should().ThrowExactly<ArgumentNullException>();
         }
 
         [Fact]
-        public void EnsureNotNull_GivenNullObjectAndParameterName_ThrowsExeption()
+        public void AgainstNull_GivenNullObjectAndParameterName_ThrowsExeption()
         {
-            Action guarding = () => Guard.EnsureNotNull(null, "nullObject");
+            Action guarding = () => Guard.AgainstNull(null, "nullObject");
             guarding.Should().ThrowExactly<ArgumentNullException>();
         }
 
         [Fact]
-        public void EnsureNonempty_GivenNullString_ThrowsException()
+        public void AgainstEmpty_GivenNullString_ThrowsException()
         {
-            Action guarding = () => Guard.EnsureNonempty((string)null, "nullString");
+            Action guarding = () => Guard.AgainstEmpty((string)null, "nullString");
             guarding.Should().ThrowExactly<ArgumentNullException>();
         }
 
         [Fact]
-        public void EnsureNonempty_GivenEmptyString_ThrowsException()
+        public void AgainstEmpty_GivenEmptyString_ThrowsException()
         {
-            Action guarding = () => Guard.EnsureNonempty(string.Empty, "emptyString");
+            Action guarding = () => Guard.AgainstEmpty(string.Empty, "emptyString");
             guarding.Should().ThrowExactly<ArgumentException>();
         }
 
         [Fact]
-        public void EnsureNonempty_GivenNonemptyString_DoesNothing()
+        public void AgainstEmpty_GivenNonemptyString_DoesNothing()
         {
-            Guard.EnsureNonempty("not empty", "nonEmptyString");
+            Guard.AgainstEmpty("not empty", "nonEmptyString");
         }
 
         [Fact]
-        public void EnsureNonempty_GivenNullGuid_ThrowsException()
+        public void AgainstEmpty_GivenNullGuid_ThrowsException()
         {
-            Action guarding = () => Guard.EnsureNonempty((Guid?)null, "nullGuid");
+            Action guarding = () => Guard.AgainstEmpty((Guid?)null, "nullGuid");
             guarding.Should().ThrowExactly<ArgumentNullException>();
         }
 
         [Fact]
-        public void EnsureNonempty_GivenEmptyGuid_ThrowsException()
+        public void AgainstEmpty_GivenEmptyGuid_ThrowsException()
         {
-            Action guarding = () => Guard.EnsureNonempty(Guid.Empty, "emptyGuid");
+            Action guarding = () => Guard.AgainstEmpty(Guid.Empty, "emptyGuid");
             guarding.Should().ThrowExactly<ArgumentException>();
         }
 
         [Fact]
-        public void EnsureNonempty_GivenNonemptyGuid_DoesNothing()
+        public void AgainstEmpty_GivenNonemptyGuid_DoesNothing()
         {
-            Guard.EnsureNonempty(Guid.NewGuid(), "nonEmptyGuid");
+            Guard.AgainstEmpty(Guid.NewGuid(), "nonEmptyGuid");
         }
 
         [Fact]
-        public void EnsureThat_GivenNullPredicate_ThrowsException()
+        public void Against_GivenNullPredicate_ThrowsException()
         {
-            Action guarding = () => Guard.EnsureThat(null);
+            Action guarding = () => Guard.Against(null);
             guarding.Should().ThrowExactly<ArgumentNullException>();
         }
 
         [Fact]
-        public void EnsureThat_GivenFalsePredicate_ThrowsException()
+        public void Against_GivenTruePredicate_ThrowsException()
         {
-            Action guarding = () => Guard.EnsureThat(() => false);
+            Action guarding = () => Guard.Against(() => true);
             guarding.Should().ThrowExactly<ArgumentException>();
         }
 
         [Fact]
-        public void EnsureThat_GivenTruePredicate_DoesNothing()
+        public void Against_GivenFalsePredicate_DoesNothing()
         {
-            Guard.EnsureThat(() => true);
+            Guard.Against(() => false);
         }
 
         [Fact]
-        public void EnsureThat_GivenFalse_ThrowsException()
+        public void Against_GivenTrue_ThrowsException()
         {
-            Action guarding = () => Guard.EnsureThat(false);
+            Action guarding = () => Guard.Against(true);
             guarding.Should().ThrowExactly<ArgumentException>();
         }
 
         [Fact]
-        public void EnsureThat_GivenTrue_DoesNothing()
+        public void Against_GivenFalse_DoesNothing()
         {
-            Guard.EnsureThat(true);
+            Guard.Against(false);
         }
     }
 }
