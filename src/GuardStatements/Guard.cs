@@ -22,7 +22,7 @@ namespace GuardStatements
     using System.Diagnostics;
 
     /// <summary>
-    /// Convenience class for enforcing invariants and responding by throwing an adequate exception.
+    /// Guard class, enforcing invariants and throwing adequate exceptions.
     /// </summary>
     public static class Guard
     {
