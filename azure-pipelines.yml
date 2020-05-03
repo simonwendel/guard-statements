@@ -1,4 +1,4 @@
-name: '$(BuildDefinitionName)_$(packageVersion)'
+name: '$(BuildDefinitionName)_$(nextVersion)$(Rev:.r)'
 
 trigger:
 - '*'
@@ -8,7 +8,6 @@ pool:
 
 variables:
   nextVersion: '3.0'
-  packageVersion: '$(nextVersion)$(Rev:.r)'
   buildProjects: '**/*.csproj'
   buildConfiguration: 'Release'
   testProjects: '**/*[Tt]ests/*.csproj'
@@ -71,6 +70,6 @@ stages:
             displayName: 'NuGet Push'
             inputs:
               command: push
-              packagesToPush: 'GuardStatements.$(packageVersion).nupkg'
+              packagesToPush: 'GuardStatements.$(nextVersion).*.nupkg'
               nuGetFeedType: external
               publishFeedCredentials: 'guard-statements-NuGet.org'
