@@ -1,4 +1,4 @@
-name: '$(BuildDefinitionName)_$(nextVersion)$(Rev:.r)'
+name: '$(BuildDefinitionName)_$(packageVersion)'
 
 trigger:
 - '*'
@@ -8,6 +8,7 @@ pool:
 
 variables:
   nextVersion: '3.0'
+  packageVersion: '$(nextVersion)$(Rev:.r)'
   buildProjects: '**/*.csproj'
   buildConfiguration: 'Release'
   testProjects: '**/*[Tt]ests/*.csproj'
@@ -54,3 +55,22 @@ stages:
         ArtifactName: 'drop'
         PathtoPublish: '$(build.artifactstagingdirectory)'
       condition: succeededOrFailed()
+
+- stage: 'Release'
+  dependsOn: CI
+  condition: succeeded()
+  jobs:
+  - deployment: NuGet
+    displayName: 'NuGet.org'
+    environment: 'guard-statements-external-nuget'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: NuGetCommand@2
+            displayName: 'NuGet Push'
+            inputs:
+              command: push
+              packagesToPush: 'GuardStatements.$(packageVersion).nupkg'
+              nuGetFeedType: external
+              publishFeedCredentials: 'guard-statements-NuGet.org'
