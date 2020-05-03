@@ -12,41 +12,45 @@ variables:
   buildConfiguration: 'Release'
   testProjects: '**/*[Tt]ests/*.csproj'
 
-steps:
-- task: DotNetCoreCLI@2
-  displayName: Restore
-  inputs:
-    command: restore
-    projects: '$(buildProjects)'
+stages:
+- stage: 'CI'
+  jobs:
+  - job: 'Build'
+    steps:
+    - task: DotNetCoreCLI@2
+      displayName: Restore
+      inputs:
+        command: restore
+        projects: '$(buildProjects)'
 
-- task: DotNetCoreCLI@2
-  displayName: Build
-  inputs:
-    projects: '$(buildProjects)'
-    arguments: '--configuration $(BuildConfiguration)'
+    - task: DotNetCoreCLI@2
+      displayName: Compile
+      inputs:
+        projects: '$(buildProjects)'
+        arguments: '--configuration $(BuildConfiguration)'
 
-- task: DotNetCoreCLI@2
-  displayName: Test
-  inputs:
-    command: test
-    projects: '$(testProjects)'
-    arguments: '--configuration $(BuildConfiguration)'
+    - task: DotNetCoreCLI@2
+      displayName: Test
+      inputs:
+        command: test
+        projects: '$(testProjects)'
+        arguments: '--configuration $(BuildConfiguration)'
 
-- task: DotNetCoreCLI@2
-  displayName: Pack
-  inputs:
-    command: pack
-    versioningScheme: byBuildNumber
+    - task: DotNetCoreCLI@2
+      displayName: Pack
+      inputs:
+        command: pack
+        versioningScheme: byBuildNumber
 
-- task: DotNetCoreCLI@2
-  displayName: Push
-  inputs:
-    command: push
-    publishVstsFeed: '4a29a0d1-45be-4c7a-b1ce-2a38e834f6fb/d73e56b2-e7c9-47b6-b6f4-03e8b88cfc7d'
+    - task: DotNetCoreCLI@2
+      displayName: Push
+      inputs:
+        command: push
+        publishVstsFeed: '4a29a0d1-45be-4c7a-b1ce-2a38e834f6fb/d73e56b2-e7c9-47b6-b6f4-03e8b88cfc7d'
 
-- task: PublishBuildArtifacts@1
-  displayName: Publish
-  inputs:
-    ArtifactName: 'drop'
-    PathtoPublish: '$(build.artifactstagingdirectory)'
-  condition: succeededOrFailed()
+    - task: PublishBuildArtifacts@1
+      displayName: Publish
+      inputs:
+        ArtifactName: 'drop'
+        PathtoPublish: '$(build.artifactstagingdirectory)'
+      condition: succeededOrFailed()
