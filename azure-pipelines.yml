@@ -17,6 +17,7 @@ stages:
   jobs:
   - job: 'Build'
     steps:
+    
     - task: DotNetCoreCLI@2
       displayName: Restore
       inputs:
@@ -48,12 +49,8 @@ stages:
         command: push
         publishVstsFeed: '4a29a0d1-45be-4c7a-b1ce-2a38e834f6fb/d73e56b2-e7c9-47b6-b6f4-03e8b88cfc7d'
 
-    - task: PublishBuildArtifacts@1
-      displayName: Publish
-      inputs:
-        ArtifactName: 'drop'
-        PathtoPublish: '$(build.artifactstagingdirectory)'
-      condition: succeededOrFailed()
+    - publish: '$(build.artifactstagingdirectory)'
+      artifact: nupkgs
 
 - stage: 'Release'
   dependsOn: CI
@@ -66,10 +63,14 @@ stages:
       runOnce:
         deploy:
           steps:
+
+          - download: current
+            artifact: nupkgs
+
           - task: NuGetCommand@2
             displayName: 'NuGet Push'
             inputs:
               command: push
-              packagesToPush: 'GuardStatements.$(nextVersion).*.nupkg'
+              packagesToPush: '$(Pipeline.Workspace)\nupkgs\GuardStatements.$(nextVersion).*.nupkg'
               nuGetFeedType: external
               publishFeedCredentials: 'guard-statements-NuGet.org'
