@@ -20,7 +20,7 @@ Guard.AgainstNull(someParameter);
 Guard.AgainstEmpty(someString);
 
 // will throw when someValue is greater than zero.
-Guard.Against(() => someValue > 0);
+Guard.Against(someValue > 0);
 ```
 
 ## 3.0 Breaks Stuff
