@@ -4,7 +4,9 @@ Removing boilerplate code when enforcing invariants.
 
 ## Usage
 
-Download the latest version -> ![Nuget](https://img.shields.io/nuget/v/guardstatements?logo=nuget)
+Download the latest version:
+
+![Nuget](https://img.shields.io/nuget/v/guardstatements?logo=nuget)
 
 Include the ```GuardStatements``` namespace and simply do something like this:
 
