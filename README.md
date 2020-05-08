@@ -1,6 +1,8 @@
 # GuardStatements
 
-Removing boilerplate code when enforcing invariants.
+Use guard statements to protect any invariant on .NET objects. For example; invariants on domain object boundaries, parameter validation, etc...
+
+Get rid of all those boiler plate ```if```s and ```throw```s!
 
 ## Usage
 
