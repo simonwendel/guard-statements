@@ -27,11 +27,13 @@ The latest version introduces a lot of breaking changes. The old version 2.2 wil
 
 ## Builds
 
-[![Master Branch Build Status](https://dev.azure.com/simonwendel-public/builds/_apis/build/status/simonwendel.guard-statements?branchName=master)](https://dev.azure.com/simonwendel-public/builds/_build/latest?definitionId=7&branchName=master)
-
-Built by [Azure Pipelines](https://dev.azure.com/simonwendel-public/builds/_build?definitionId=7&_a=summary).
+[![Azure DevOps builds (CI)][ci-build-badge]][build]
+[![Azure DevOps builds (Release)][release-build-badge]][build]
 
 
 [nuget-badge]: https://img.shields.io/nuget/v/guardstatements?logo=nuget
+[ci-build-badge]: https://img.shields.io/azure-devops/build/simonwendel-public/4a29a0d1-45be-4c7a-b1ce-2a38e834f6fb/7/master?label=CI&logo=azuredevops&stage=CI
+[release-build-badge]: https://img.shields.io/azure-devops/build/simonwendel-public/4a29a0d1-45be-4c7a-b1ce-2a38e834f6fb/7/master?label=Release&logo=azuredevops&stage=Release
+[build]: https://dev.azure.com/simonwendel-public/builds/_build?definitionId=7&_a=summary
 [new-package]: https://www.nuget.org/packages/GuardStatements/
 [old-package]: https://www.nuget.org/packages/SimonWendel.GuardStatements/
