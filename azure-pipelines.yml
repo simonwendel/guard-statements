@@ -1,7 +1,12 @@
 name: '$(BuildDefinitionName)_$(nextVersion)$(Rev:.r)'
 
 trigger:
-- '*'
+  branches:
+    include:
+    - '*'
+  paths:
+    exclude:
+    - 'README.md'
 
 pool:
   vmImage: 'windows-2019'
