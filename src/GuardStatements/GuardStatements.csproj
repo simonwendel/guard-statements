@@ -6,7 +6,7 @@
     <Description>Guarding invariants in .NET, fx. when enforcing the boundary of a domain model.</Description>
     <PackageProjectUrl>https://github.com/simonwendel/guard-statements</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/simonwendel/guard-statements/blob/master/LICENSE</PackageLicenseUrl>
-    <TargetFrameworks>net45;net47;netstandard1.0;netstandard2.0;netstandard2.1</TargetFrameworks>
+    <TargetFrameworks>net45;net5.0;netstandard1.0;netstandard2.0;netstandard2.1</TargetFrameworks>
   </PropertyGroup>
 
 </Project>
